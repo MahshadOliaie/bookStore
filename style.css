@@ -25,6 +25,7 @@ body {
     box-shadow: 1px 1px 1rem gray;
     transition: 500ms;
     position: relative;
+    cursor: pointer;
 
 }
 
@@ -66,4 +67,25 @@ img {
 
 .dnone{
     display: none;
+}
+
+
+.showLikedBooks{
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.showLikedBooks:hover svg{
+    fill: red;
+}
+.showLikedBooks:hover::after{
+    content: "نمایش علاقه مندی ها";
+    position: absolute;
+    margin-left: 25px;
+    margin-top: 25px;
+    background-color: rgb(226, 226, 226);
+    font-size: 17px;
+    padding: 10px 15px;
+
 }
