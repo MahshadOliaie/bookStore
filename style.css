@@ -22,7 +22,6 @@ body {
 
 .card {
     width: 100%;
-    /* background: linear-gradient(rgb(147, 147, 147), rgb(229, 229, 229)); */
     line-height: 1;
     transition: 500ms;
     position: relative;
