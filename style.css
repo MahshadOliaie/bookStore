@@ -242,3 +242,25 @@ img {
     pointer-events: none;
     border-bottom: 2px solid red;
 }
+
+
+.filter{
+    width: 100%;
+    background-color: rgb(132, 132, 132);
+    padding: 10px 60px;
+}
+.search{
+    border: 1px solid gray;
+    padding: 6px 15px;
+    background-color: rgb(149, 149, 149);
+    width: 30%;
+}
+.search::placeholder{
+    font-size: 14px;
+    color: rgba(61, 61, 61, 0.903);
+}
+.search:focus-visible{
+    border: none;
+    outline: none;
+    box-shadow: .5px .5px .5rem gray;
+}
