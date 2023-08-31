@@ -1,7 +1,11 @@
 let root = document.querySelector(".container");
 let aboutBook = document.querySelector(".more");
+let slide = document.querySelector(".slide");
+let home = document.querySelector(".home");
+let showLikedBooks = document.querySelector(".showLikedBooks");
+let h1 = document.querySelector(".h1");
 
-
+let likedBooks = [];
 const BOOKS = [
   {
     id: 1,
@@ -179,10 +183,6 @@ const BOOKS = [
 ];
 
 
-let likedBooks = [];
-let showLikedBooks = document.querySelector(".showLikedBooks");
-let h1 = document.querySelector(".h1");
-
 
 function like(id) {
   if (likedBooks.includes(id)) {
@@ -199,12 +199,14 @@ function showLikedBooksFN() {
     return item = BOOKS.find(book => book.id === item)
   })
   render(likedBooks);
-  h1.textContent = "علاقه مندی ها";
   let hearts = [...document.querySelectorAll(".like")];
   for (const heart of hearts) {
     heart.classList.add("dnone")
   }
-
+  h1.textContent = "علاقه مندی ها"
+  slide.classList.add("dnone");
+  home.classList.remove("current");
+  showLikedBooks.classList.add("current")
 }
 
 
@@ -235,6 +237,10 @@ function showDetails(id) {
 
 
 function render(data) {
+  showLikedBooks.classList.remove("current")
+  home.classList.add("current");
+  slide.classList.remove("dnone");
+  h1.innerHTML =""
   let template = data.map((book) => {
     return `<div class="card">
     <div class="img" onclick="showDetails(${book.id})"><img src="./image/${book.imgSrc}" alt=""></div>
@@ -256,6 +262,10 @@ function render(data) {
 
 }
 
+
+home.addEventListener("click", function () {
+  render(BOOKS)
+});
 
 window.addEventListener("load", function () {
   render(BOOKS)
