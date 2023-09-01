@@ -13,6 +13,7 @@ let pageCount;
 let showItems = [];
 let page = 1;
 let likedBooks = [];
+
 const BOOKS = [
   {
     id: 1,
@@ -215,8 +216,17 @@ function showLikedBooksFN() {
 let res = []
 function search() {
   let value = searchInput.value;
-  res = BOOKS.filter(item => item.title.includes(value) || item.author.includes(value));
-  pagination(1, res)
+
+  if(value!==""){
+    if (showLikedBooks.outerHTML.includes("current"))
+    res = likedBooks.filter(item => item.title.includes(value) || item.author.includes(value));
+
+  else
+    res = BOOKS.filter(item => item.title.includes(value) || item.author.includes(value));
+    pagination(1, res)
+  }
+  else
+  pagination(1,likedBooks)
 }
 
 
