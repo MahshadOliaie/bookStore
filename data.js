@@ -260,16 +260,26 @@ function showDetails(id) {
 
 
 function pagination(p, data) {
-  pageCount = Math.ceil(data.length / num);
-  page = p;
-  if (p == pageCount)
-    showItems = data.slice((p - 1) * num);
 
-  else
-    showItems = data.slice((p - 1) * num, (p * num));
+  if (data.length == 0) {
+    root.innerHTML = `<p class="notFound">نتیجه ای یافت نشد!</p>`;
+    pages.innerHTML=""
+  }
+  else {
+    pageCount = Math.ceil(data.length / num);
+    page = p;
+    if (p == pageCount)
+      showItems = data.slice((p - 1) * num);
 
-  render(showItems);
-  pagesFN(data);
+    else
+      showItems = data.slice((p - 1) * num, (p * num));
+
+    render(showItems);
+    pagesFN(data);
+
+    if (pageNumbers.length > 0)
+      pageNumbers[p - 1].style.backgroundColor = "rgb(129, 129, 129)";
+  }
 
   if (data == BOOKS) {
     showLikedBooks.classList.remove("current")
@@ -289,9 +299,6 @@ function pagination(p, data) {
     showLikedBooks.classList.add("current")
   }
 
-
-  if (pageNumbers.length > 0)
-    pageNumbers[p - 1].style.backgroundColor = "rgb(129, 129, 129)";
 }
 
 
