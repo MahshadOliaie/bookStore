@@ -217,16 +217,21 @@ let res = []
 function search() {
   let value = searchInput.value;
 
-  if(value!==""){
-    if (showLikedBooks.outerHTML.includes("current"))
-    res = likedBooks.filter(item => item.title.includes(value) || item.author.includes(value));
+  if (showLikedBooks.outerHTML.includes("current")) {
+    if (value === "") {
+      pagination(1, likedBooks)
+    }
+    else {
+      res = likedBooks.filter(item => item.title.includes(value) || item.author.includes(value));
+      pagination(1, res)
+    }
+  }
 
-  else
+  else {
     res = BOOKS.filter(item => item.title.includes(value) || item.author.includes(value));
     pagination(1, res)
   }
-  else
-  pagination(1,likedBooks)
+
 }
 
 
