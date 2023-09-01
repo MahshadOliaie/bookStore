@@ -7,7 +7,7 @@ let h1 = document.querySelector(".h1");
 let searchInput = document.querySelector(".search");
 let pages = document.querySelector(".pages");
 let pageNumbers = [];
-let likedBooksId =[]
+let likedBooksId = []
 let likedBooks = [];
 const BOOKS = [
   {
@@ -193,9 +193,9 @@ function like(id) {
   } else
     likedBooksId.push(id);
 
-    likedBooks = likedBooksId.map(item => {
-      return item = BOOKS.find(book => book.id === item)
-    })
+  likedBooks = likedBooksId.map(item => {
+    return item = BOOKS.find(book => book.id === item)
+  })
 
   pagination(page, BOOKS);
 }
@@ -204,14 +204,6 @@ function like(id) {
 
 function showLikedBooksFN() {
   pagination(1, likedBooks);
-  let hearts = [...document.querySelectorAll(".like")];
-  for (const heart of hearts) {
-    heart.classList.add("dnone")
-  }
-  h1.textContent = "علاقه مندی ها"
-  slide.classList.add("dnone");
-  home.classList.remove("current");
-  showLikedBooks.classList.add("current")
 
 }
 
@@ -256,7 +248,6 @@ let showItems = [];
 let page = 1;
 
 function pagination(p, data) {
-  console.log(likedBooks)
   pageCount = Math.ceil(data.length / num);
   page = p;
   if (p == pageCount)
@@ -268,13 +259,31 @@ function pagination(p, data) {
   render(showItems);
   pagesFN(data);
 
+  if (data == BOOKS) {
+    showLikedBooks.classList.remove("current")
+    home.classList.add("current");
+    slide.classList.remove("dnone");
+    h1.innerHTML = "";
+  }
+
+  if (data == likedBooks) {
+    let hearts = [...document.querySelectorAll(".like")];
+    for (const heart of hearts) {
+      heart.classList.add("dnone")
+    }
+    h1.textContent = "علاقه مندی ها"
+    slide.classList.add("dnone");
+    home.classList.remove("current");
+    showLikedBooks.classList.add("current")
+  }
+
+
   if (pageNumbers.length > 0)
     pageNumbers[p - 1].style.backgroundColor = "rgb(129, 129, 129)";
 }
 
 
 function pagesFN(data) {
-  console.log(data)
   pages.innerHTML = "";
   for (let i = 1; i <= pageCount; i++) {
     pages.innerHTML += `<p onclick="pagination(${i},${(data == BOOKS) ? "BOOKS" : (data == likedBooks) ? "likedBooks" : "res"})" class="pagechoose">${i}</p>`
@@ -287,10 +296,6 @@ function pagesFN(data) {
 
 
 function render(data) {
-  showLikedBooks.classList.remove("current")
-  home.classList.add("current");
-  slide.classList.remove("dnone");
-  h1.innerHTML = "";
   let template = data.map((book) => {
     const { id, title, author, imgSrc } = book;
     return `<div class="card">
