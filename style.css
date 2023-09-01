@@ -261,7 +261,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin: 280px 0 100px;
+    margin: 100px 0;
     max-width: 200px;
     overflow-x: scroll;
     direction: ltr;

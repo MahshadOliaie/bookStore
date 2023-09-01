@@ -7,7 +7,11 @@ let h1 = document.querySelector(".h1");
 let searchInput = document.querySelector(".search");
 let pages = document.querySelector(".pages");
 let pageNumbers = [];
-let likedBooksId = []
+let likedBooksId = [];
+let num = 8;
+let pageCount;
+let showItems = [];
+let page = 1;
 let likedBooks = [];
 const BOOKS = [
   {
@@ -239,13 +243,6 @@ function showDetails(id) {
 `
 }
 
-
-
-
-let num = 4;
-let pageCount;
-let showItems = [];
-let page = 1;
 
 function pagination(p, data) {
   pageCount = Math.ceil(data.length / num);
