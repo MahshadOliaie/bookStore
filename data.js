@@ -5,6 +5,8 @@ let home = document.querySelector(".home");
 let showLikedBooks = document.querySelector(".showLikedBooks");
 let h1 = document.querySelector(".h1");
 let searchInput = document.querySelector(".search");
+let pages = document.querySelector(".pages");
+let pageNumbers = [];
 
 let likedBooks = [];
 const BOOKS = [
@@ -190,7 +192,7 @@ function like(id) {
     likedBooks.splice(likedBooks.indexOf(id), 1);
   } else
     likedBooks.push(id);
-  render(BOOKS);
+    pagination(page)
 }
 
 
@@ -246,6 +248,38 @@ function showDetails(id) {
 
 
 
+let num = 4;
+let pageCount = Math.ceil(BOOKS.length / num);
+let showItems = [];
+let page = 1;
+
+function pagination(p) {
+  page = p;
+  if (p == pageCount)
+    showItems = BOOKS.slice((p - 1) * num);
+
+  else
+    showItems = BOOKS.slice((p - 1) * num, (p * num));
+
+  render(showItems);
+  pagesFN();
+
+  pageNumbers[p - 1].style.backgroundColor = "rgb(129, 129, 129)";
+}
+
+
+function pagesFN() {
+  pages.innerHTML = "";
+  for (let i = 1; i <= pageCount; i++) {
+    pages.innerHTML += `<p onclick="pagination(${i})" class="pagechoose">${i}</p>`
+  }
+  pageNumbers = document.querySelectorAll(".pagechoose")
+}
+
+
+
+
+
 function render(data) {
   showLikedBooks.classList.remove("current")
   home.classList.add("current");
@@ -268,10 +302,15 @@ function render(data) {
 </div>`
   }).join("");
 
-
   root.innerHTML = template;
 
+
+
+  
+
 }
+
+
 
 
 
@@ -280,7 +319,7 @@ home.addEventListener("click", function () {
 });
 
 window.addEventListener("load", function () {
-  render(BOOKS)
+  pagination(page)
 })
 showLikedBooks.addEventListener("click", showLikedBooksFN);
 
