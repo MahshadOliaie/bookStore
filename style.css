@@ -229,14 +229,6 @@ img {
 
 
 
-
-
-.dnone{
-    display: none;
-}
-
-
-
 .current{
     fill: red;
     pointer-events: none;
@@ -263,4 +255,22 @@ img {
     border: none;
     outline: none;
     box-shadow: .5px .5px .5rem gray;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.dnone{
+    display: none;
 }
