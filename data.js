@@ -263,9 +263,12 @@ function pagination(p, data) {
 
   if (data.length == 0) {
     root.innerHTML = `<p class="notFound">نتیجه ای یافت نشد!</p>`;
-    document.querySelector(".pageHandler").innerHTML=""
+    document.querySelector(".pageHandler").classList.add("dnone");
   }
   else {
+    document.querySelector(".pageHandler").classList.remove("dnone");
+
+
     pageCount = Math.ceil(data.length / num);
     page = p;
     if (p == pageCount)
