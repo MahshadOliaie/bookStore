@@ -263,7 +263,7 @@ function pagination(p, data) {
 
   if (data.length == 0) {
     root.innerHTML = `<p class="notFound">نتیجه ای یافت نشد!</p>`;
-    pages.innerHTML=""
+    document.querySelector(".pageHandler").innerHTML=""
   }
   else {
     pageCount = Math.ceil(data.length / num);
@@ -341,6 +341,13 @@ function render(data) {
 }
 
 
+function getValue(){
+  num = document.getElementById("number").value;
+  if (showLikedBooks.outerHTML.includes("current")){
+    pagination(1,likedBooks);
+  }else
+  pagination(1, BOOKS);
+}
 
 
 
@@ -355,3 +362,5 @@ window.addEventListener("load", function () {
 showLikedBooks.addEventListener("click", showLikedBooksFN);
 
 searchInput.addEventListener("keyup", search);
+
+document.querySelector("#number").addEventListener("change" , getValue);

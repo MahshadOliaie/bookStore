@@ -13,11 +13,10 @@ body {
 
 
 .container {
-    width: 100%;
+    width: 80%;
     display: grid;
-    grid-template-columns: repeat(4, 13%);
-    gap: 5%;
-    justify-content: center;
+    grid-template-columns: repeat(4, 18%);
+    justify-content: space-around;
 }
 
 .card {
@@ -26,6 +25,7 @@ body {
     transition: 500ms;
     position: relative;
     cursor: pointer;
+    margin-bottom: 60px;
 
 }
 .card h2{
@@ -261,7 +261,6 @@ img {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin: 100px 0;
     max-width: 200px;
     overflow-x: scroll;
     direction: ltr;
@@ -283,10 +282,31 @@ img {
 }
 
 
+.pageHandler{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-left: 25%;
+    margin-bottom: 100px;
+}
 
 
+.howMany{
+    display: flex;
+    align-items: center;
+    margin-left: 15%;
 
-
+}
+#number{
+    margin-right: 10px;
+    background-color: rgb(174, 174, 174);
+    padding: 5px;
+    border-radius: 30px;
+}
+#number:focus-visible{
+    outline: none;
+}
 
 
 
