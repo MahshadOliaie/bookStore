@@ -13,6 +13,7 @@ let pageCount;
 let showItems = [];
 let page = 1;
 let likedBooks = [];
+let currentPath = location.pathname;
 
 
 
@@ -81,6 +82,8 @@ function showDetails(id) {
   <button class="buy">افزودن به سبد خرید</button>    
 </div>
 `
+  history.pushState({}, "", title)
+  currentPath = location.pathname;
 }
 
 
@@ -169,33 +172,42 @@ function render(data) {
 }
 
 
-function getValue(){
+function getValue() {
   num = document.getElementById("number").value;
-  if (showLikedBooks.outerHTML.includes("current")){
-    pagination(1,likedBooks);
-  }else
-  pagination(1, BOOKS);
+  if (showLikedBooks.outerHTML.includes("current")) {
+    pagination(1, likedBooks);
+  } else
+    pagination(1, BOOKS);
 }
 
 
 
-function handleRoute(event){
+function handleRoute(event) {
   let href = event.target.getAttribute("class");
+
   history.pushState({}, "", href)
-  if(href == "homePage"){
+  currentPath = location.pathname;
+
+  if (href == "homePage") {
     pagination(page, BOOKS)
-  }else
-  if(href=="favoritePage"){
+  }
+  if (href == "favoritePage") {
     showLikedBooksFN();
   }
 }
 
 
-function handleLocation(){
+function handleLocation() {
   const pathname = location.pathname;
 
-  if(pathname=="/homePage"){
+  if(currentPath.length>20 && pathname=="/favoritePage"){
+    aboutBook.style.display = "none";
+    showLikedBooksFN();
+  }
+
+  if (pathname == "/homePage" || pathname == "/") {
     pagination(page, BOOKS)
+    aboutBook.style.display = "none";
   }
 }
 
@@ -213,4 +225,4 @@ showLikedBooks.addEventListener("click", handleRoute);
 
 searchInput.addEventListener("keyup", search);
 
-document.querySelector("#number").addEventListener("change" , getValue);
+document.querySelector("#number").addEventListener("change", getValue);
