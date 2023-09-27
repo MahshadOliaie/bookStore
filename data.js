@@ -7,12 +7,12 @@ let h1 = document.querySelector(".h1");
 let searchInput = document.querySelector(".search");
 let pages = document.querySelector(".pages");
 let pageNumbers = [];
-let likedBooksId = [];
+let likedBooksId =JSON.parse(localStorage.getItem("likedBookID")) || [];
 let num = 8;
 let pageCount;
 let showItems = [];
 let page = 1;
-let likedBooks = [];
+let likedBooks = JSON.parse(localStorage.getItem("likedBooks")) || [];
 let currentPath = location.pathname;
 
 
@@ -24,9 +24,12 @@ function like(id) {
   } else
     likedBooksId.push(id);
 
+  localStorage.setItem("likedBookID", JSON.stringify(likedBooksId))
+
   likedBooks = likedBooksId.map(item => {
     return item = BOOKS.find(book => book.id === item)
   })
+  localStorage.setItem("likedBooks", JSON.stringify(likedBooks))
 
   pagination(page, BOOKS);
 }
@@ -200,7 +203,7 @@ function handleRoute(event) {
 function handleLocation() {
   const pathname = location.pathname;
 
-  if(currentPath.length>20 && pathname=="/favoritePage"){
+  if (currentPath.length > 20 && pathname == "/favoritePage") {
     aboutBook.style.display = "none";
     showLikedBooksFN();
   }
