@@ -126,7 +126,15 @@ img {
     height: 100vh;
     backdrop-filter: blur(10px);
     display: none;
+
+    @media screen and (max-width:900px) {
+        flex-direction: column;
+        overflow: scroll;
+        justify-content: flex-start;
+    }
+
 }
+
 
 .more img{
     width: 35%;
