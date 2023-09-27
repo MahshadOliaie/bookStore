@@ -178,15 +178,38 @@ function getValue(){
 }
 
 
-home.addEventListener("click", function () {
-  pagination(page, BOOKS)
-});
+
+function handleRoute(event){
+  let href = event.target.getAttribute("class");
+  history.pushState({}, "", href)
+  if(href == "homePage"){
+    pagination(page, BOOKS)
+  }else
+  if(href=="favoritePage"){
+    showLikedBooksFN();
+  }
+}
+
+
+function handleLocation(){
+  const pathname = location.pathname;
+
+  if(pathname=="/homePage"){
+    pagination(page, BOOKS)
+  }
+}
+
+
+home.addEventListener("click", handleRoute);
 
 window.addEventListener("load", function () {
   pagination(page, BOOKS)
 })
 
-showLikedBooks.addEventListener("click", showLikedBooksFN);
+
+window.addEventListener("popstate", handleLocation)
+
+showLikedBooks.addEventListener("click", handleRoute);
 
 searchInput.addEventListener("keyup", search);
 
